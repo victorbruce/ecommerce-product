@@ -1,0 +1,19 @@
+.menuItem {
+  @apply hover:text-veryDarkBlue hover:cursor-pointer relative;
+  transition: color 1s ease-in;
+}
+
+.menuItem::after {
+  transition: background 100ms ease-in;
+}
+
+.menuItem:hover::after {
+  content: " ";
+  position: absolute;
+  top: 59px;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--orange);
+}
