@@ -39,7 +39,7 @@ const Navbar = () => {
             alt="cart"
           />
           <img
-            className="w-12 border-2 border-transparent hover:cursor-pointer hover:border-2 hover:border-orange rounded-full hover:transition-colors duration-500"
+            className="w-12 border-2 border-transparent hover:cursor-pointer hover:border-2 hover:border-orange rounded-full hover:transition-colors duration-200"
             src={Avatar}
             alt="avatar"
           />
