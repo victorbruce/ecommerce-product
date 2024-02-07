@@ -19,12 +19,16 @@ const menu: Menu[] = [
 const Navbar = () => {
   return (
     <nav>
-      <div className="container flex items-center justify-between py-6 border-b border-b-grayishBlue">
+      <div className="container px-4 flex items-center justify-between py-6 border-b border-b-grayishBlue">
         <div className="flex gap-8">
+          {/* Hamburger Menu */}
+          <button className="lg:hidden">
+            <img src="/images/icon-menu.svg" alt="" />
+          </button>
           <div>
             <img className="hover:cursor-pointer" src={Logo} alt="app logo" />
           </div>
-          <ul className="flex gap-6 text-darkGrayishBlue">
+          <ul className="hidden lg:flex gap-6 text-darkGrayishBlue">
             {menu.map((menuItem) => (
               <li className={styles.menuItem} key={menuItem.id}>
                 {menuItem.linkName}
