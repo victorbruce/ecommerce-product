@@ -60,8 +60,8 @@ export default function App() {
             </span>
             <p className="text-sm text-grayishBlue line-through">$250.00</p>
           </div>
-          <div className="flex-col lg:flex gap-6 lg:items-center">
-            <div className="flex justify-between bg-lightGrayishBlue rounded-lg">
+          <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-4">
+            <div className="flex-1 flex justify-between bg-lightGrayishBlue rounded-lg">
               <button className="flex-1 px-4 py-2  text-orange font-bold">
                 -
               </button>
@@ -72,10 +72,12 @@ export default function App() {
                 +
               </button>
             </div>
-            <button className="w-full text-white bg-orange px-8 py-4 rounded-md font-medium shadow-xl shadow-paleOrange flex items-center gap-2 justify-center">
-              <img src="/images/icon-cart.svg" className="" alt="cart" /> Add to
-              cart
-            </button>
+            <div className="">
+              <button className="flex-1 w-full text-white bg-orange px-8 py-4 rounded-md font-medium shadow-xl shadow-paleOrange flex items-center gap-2 justify-center">
+                <img src="/images/icon-cart.svg" className="" alt="cart" /> Add
+                to cart
+              </button>
+            </div>
           </div>
         </div>
       </div>
