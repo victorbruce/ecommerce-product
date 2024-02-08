@@ -1,0 +1,52 @@
+.slick-dots {
+  bottom: -120px;
+}
+.slick-dots li {
+  width: 96px;
+  height: 96px;
+}
+
+li.slick-active {
+  border: 2px solid var(--orange);
+  border-radius: 0.6rem;
+}
+li.slick-active img {
+  opacity: 0.5;
+}
+.slick-dots li {
+  border-radius: 0.6rem;
+}
+.slick-dots li:hover {
+  border: 2px solid var(--orange);
+}
+
+.slick-next:before {
+  content: url("/images/icon-next.svg");
+}
+
+.slick-prev:before {
+  content: url("/images/icon-previous.svg");
+}
+
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus {
+  background-color: white;
+  color: black;
+}
+
+button.slick-arrow {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: white;
+}
+
+button.slick-next {
+  right: 10px;
+}
+button.slick-prev {
+  left: 10px;
+  z-index: 1;
+}
