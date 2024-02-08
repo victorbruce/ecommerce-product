@@ -4,6 +4,8 @@ import IconCart from "/images/icon-cart.svg";
 import styles from "./Navbar.module.css";
 import { useState } from "react";
 import CartDropDown from "../Cart";
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 
 interface Menu {
   id: number;
@@ -21,6 +23,7 @@ const menu: Menu[] = [
 const Navbar = () => {
   const [isMobile, setMobile] = useState(false);
   const [isCart, setCart] = useState(false);
+  const { numberOfProducts } = useContext(CartContext);
 
   return (
     <nav>
@@ -42,12 +45,15 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex gap-8 items-center">
-          <button onClick={() => setCart(!isCart)}>
+          <button className="relative" onClick={() => setCart(!isCart)}>
             <img
               className="w-6 h-6 hover:cursor-pointer"
               src={IconCart}
               alt="cart"
             />
+            <span className="absolute -top-3 -right-2 bg-orange text-white py-[1px] px-2 rounded-full text-xs">
+              {numberOfProducts}
+            </span>
           </button>
           <img
             className="w-12 border-2 border-transparent hover:cursor-pointer hover:border-2 hover:border-orange rounded-full hover:transition-colors duration-200"
