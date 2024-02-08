@@ -22,8 +22,8 @@ const ImageSlider = () => {
 
   return (
     <Slider {...settings}>
-      {images.map((image) => (
-        <div>
+      {images.map((image, index) => (
+        <div key={index}>
           <img src={image} alt="product" />
         </div>
       ))}
