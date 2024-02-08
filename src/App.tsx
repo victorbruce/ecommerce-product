@@ -1,40 +1,19 @@
-import ProductImage1 from "/images/image-product-1.jpg";
-import ProductThumbnail1 from "/images/image-product-1-thumbnail.jpg";
-import ProductThumbnail2 from "/images/image-product-2-thumbnail.jpg";
-import ProductThumbnail3 from "/images/image-product-3-thumbnail.jpg";
-import ProductThumbnail4 from "/images/image-product-4-thumbnail.jpg";
+import { useState } from "react";
+import { ImageSlider, PagingImageSlider } from "./components/Sliders";
 
 export default function App() {
+  const [count, setCount] = useState(0);
   return (
-    <div className="lg:py-24 flex flex-col lg:flex-row gap-8 items-center">
+    <div className="lg:py-24 flex flex-col lg:flex-row gap-8 lg:items-center">
       <div className="flex-1">
-        <div className="w-full lg:w-[450px] mx-auto">
-          <img
-            className="object-contain text-center lg:rounded-lg"
-            src={ProductImage1}
-            alt=""
-          />
-          <div className="hidden lg:flex justify-between mt-8">
-            <img
-              className="w-24 rounded-lg object-contain"
-              src={ProductThumbnail1}
-              alt=""
-            />
-            <img
-              className="w-24 rounded-lg object-contain"
-              src={ProductThumbnail2}
-              alt=""
-            />
-            <img
-              className="w-24 rounded-lg object-contain"
-              src={ProductThumbnail3}
-              alt=""
-            />
-            <img
-              className="w-24 rounded-lg object-contain"
-              src={ProductThumbnail4}
-              alt=""
-            />
+        <div className="lg:w-[450px] mx-auto">
+          {/* Desktop view Image Slider */}
+          <div className="hidden lg:block">
+            <PagingImageSlider />
+          </div>
+          {/* Mobile view Image Slider */}
+          <div className="lg:hidden">
+            <ImageSlider />
           </div>
         </div>
       </div>
@@ -62,14 +41,31 @@ export default function App() {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-4">
             <div className="flex-1 flex justify-between bg-lightGrayishBlue rounded-lg">
-              <button className="flex-1 px-4 py-2  text-orange font-bold">
-                -
+              <button
+                disabled={count === 0}
+                onClick={() => setCount(count - 1)}
+                className={`flex-1 px-4 py-2 cursor-${
+                  count === 0 ? "not-allowed" : "pointer"
+                }`}
+              >
+                <img
+                  className="mx-auto"
+                  src="/images/icon-minus.svg"
+                  alt="minus"
+                />
               </button>
-              <button className="flex-1 px-4 py-4 text-veryDarkBlue font-bold">
-                0
-              </button>
-              <button className="flex-1 px-4 py-4 text-orange font-bold">
-                +
+              <div className="flex-1 px-4 py-4 text-veryDarkBlue font-bold text-center">
+                {count}
+              </div>
+              <button
+                onClick={() => setCount(count + 1)}
+                className="flex-1 px-4 py-4"
+              >
+                <img
+                  className="mx-auto"
+                  src="/images/icon-plus.svg"
+                  alt="plus"
+                />
               </button>
             </div>
             <div className="">
