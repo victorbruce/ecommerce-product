@@ -3,6 +3,7 @@ import Avatar from "/images/image-avatar.png";
 import IconCart from "/images/icon-cart.svg";
 import styles from "./Navbar.module.css";
 import { useState } from "react";
+import CartDropDown from "../Cart";
 
 interface Menu {
   id: number;
@@ -19,10 +20,11 @@ const menu: Menu[] = [
 
 const Navbar = () => {
   const [isMobile, setMobile] = useState(false);
+  const [isCart, setCart] = useState(false);
 
   return (
     <nav>
-      <div className="container px-4 flex items-center justify-between py-6 border-b border-b-grayishBlue">
+      <div className="container px-4 flex items-center justify-between py-6 border-b border-b-grayishBlue relative">
         <div className="flex gap-8">
           {/* Hamburger Menu */}
           <button onClick={() => setMobile(true)} className="lg:hidden">
@@ -40,17 +42,21 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex gap-8 items-center">
-          <img
-            className="w-6 h-6 hover:cursor-pointer"
-            src={IconCart}
-            alt="cart"
-          />
+          <button onClick={() => setCart(!isCart)}>
+            <img
+              className="w-6 h-6 hover:cursor-pointer"
+              src={IconCart}
+              alt="cart"
+            />
+          </button>
           <img
             className="w-12 border-2 border-transparent hover:cursor-pointer hover:border-2 hover:border-orange rounded-full hover:transition-colors duration-200"
             src={Avatar}
             alt="avatar"
           />
         </div>
+        {/* Cart Dropdown */}
+        {isCart && <CartDropDown />}
         {/* Mobile Menu */}
         {isMobile && (
           <div className="">
