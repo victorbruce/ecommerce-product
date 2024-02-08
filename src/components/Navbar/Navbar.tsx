@@ -2,6 +2,7 @@ import Logo from "/images/logo.svg";
 import Avatar from "/images/image-avatar.png";
 import IconCart from "/images/icon-cart.svg";
 import styles from "./Navbar.module.css";
+import { useState } from "react";
 
 interface Menu {
   id: number;
@@ -17,12 +18,14 @@ const menu: Menu[] = [
 ];
 
 const Navbar = () => {
+  const [isMobile, setMobile] = useState(false);
+
   return (
     <nav>
       <div className="container px-4 flex items-center justify-between py-6 border-b border-b-grayishBlue">
         <div className="flex gap-8">
           {/* Hamburger Menu */}
-          <button className="lg:hidden">
+          <button onClick={() => setMobile(true)} className="lg:hidden">
             <img src="/images/icon-menu.svg" alt="" />
           </button>
           <div>
@@ -48,6 +51,27 @@ const Navbar = () => {
             alt="avatar"
           />
         </div>
+        {/* Mobile Menu */}
+        {isMobile && (
+          <div className="">
+            <div
+              onClick={() => setMobile(false)}
+              className="fixed top-0 right-0 left-0 bottom-0 bg-gray-900/50 z-[2]"
+            />
+            <div className="fixed top-0 left-0 bottom-0 w-[250px] bg-white z-[3]">
+              <div className="py-8 px-4">
+                <button onClick={() => setMobile(false)}>
+                  <img src="/images/icon-close.svg" alt="close" />
+                </button>
+              </div>
+              <ul className="px-4 flex flex-col gap-4 h-full font-bold">
+                {menu.map((menuItem) => (
+                  <li key={menuItem.id}>{menuItem.linkName}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );
