@@ -1,8 +1,13 @@
-import { useState } from "react";
 import { ImageSlider, PagingImageSlider } from "./components/Sliders";
+import { CartContext } from "./context/CartContext";
+import { CountContext } from "./context/CountContext";
+import { useContext } from "react";
 
 export default function App() {
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
+  const { addProduct } = useContext(CartContext);
+  const { count, increment, decrement } = useContext(CountContext);
+
   return (
     <div className="lg:py-24 flex flex-col lg:flex-row gap-8 lg:items-center">
       <div className="flex-1">
@@ -25,7 +30,7 @@ export default function App() {
           <h1 className="text-3xl lg:text-5xl font-bold mb-6">
             Fall Limited Edition Sneakers
           </h1>
-          <p className="max-w-md text-darkGrayishBlue mb-6 text-sm">
+          <p className="max-w-md text-darkGrayishBlue mb-6 text-sm leading-8">
             These low-profile sneakers are your perfect casual wear companion.
             Featuring a durable rubber outer sole, they&apos;ll withstand
             everything the weather can offer.
@@ -43,7 +48,7 @@ export default function App() {
             <div className="flex-1 flex justify-between bg-lightGrayishBlue rounded-lg">
               <button
                 disabled={count === 0}
-                onClick={() => setCount(count - 1)}
+                onClick={() => decrement()}
                 className={`flex-1 px-4 py-2 cursor-${
                   count === 0 ? "not-allowed" : "pointer"
                 }`}
@@ -57,10 +62,7 @@ export default function App() {
               <div className="flex-1 px-4 py-4 text-veryDarkBlue font-bold text-center">
                 {count}
               </div>
-              <button
-                onClick={() => setCount(count + 1)}
-                className="flex-1 px-4 py-4"
-              >
+              <button onClick={() => increment() } className="flex-1 px-4 py-4">
                 <img
                   className="mx-auto"
                   src="/images/icon-plus.svg"
@@ -69,9 +71,23 @@ export default function App() {
               </button>
             </div>
             <div className="">
-              <button className="flex-1 w-full text-white bg-orange px-8 py-4 rounded-md font-medium shadow-xl shadow-paleOrange flex items-center gap-2 justify-center">
-                <img src="/images/icon-cart.svg" className="" alt="cart" /> Add
-                to cart
+              <button
+                onClick={() =>
+                  addProduct({
+                    id: 1,
+                    image: "/images/image-product-1-thumbnail.jpg",
+                    price: 125,
+                    title: "Fall Limited Edition Sneakers",
+                  })
+                }
+                className="flex-1 w-full text-white bg-orange px-8 py-4 rounded-md font-medium shadow-xl shadow-paleOrange flex items-center gap-2 justify-center"
+              >
+                <img
+                  src="/images/icon-cart-white.svg"
+                  className=""
+                  alt="cart"
+                />{" "}
+                Add to cart
               </button>
             </div>
           </div>
