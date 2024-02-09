@@ -33,8 +33,8 @@ const PagingImageSlider = () => {
     <div className="slider-container">
       <Slider {...settings}>
         {images.map((image, index) => (
-          <div key={index}>
-            <img src={image} alt="" />
+          <div className="rounded-lg" key={index}>
+            <img className="rounded-lg" src={image} alt="" />
           </div>
         ))}
       </Slider>

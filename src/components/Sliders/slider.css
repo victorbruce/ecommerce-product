@@ -4,6 +4,7 @@
 .slick-dots li {
   width: 96px;
   height: 96px;
+  transition: opacity .5s ease-in-out;
 }
 
 li.slick-active {
@@ -17,7 +18,7 @@ li.slick-active img {
   border-radius: 0.6rem;
 }
 .slick-dots li:hover {
-  border: 2px solid var(--orange);
+  opacity: 0.5;
 }
 
 .slick-next:before {

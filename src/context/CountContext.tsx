@@ -11,13 +11,13 @@ interface ContextProps {
 }
 
 export const CountContext = createContext<ContextProps>({
-  count: 0,
+  count: 1,
   increment: () => {},
   decrement: () => {},
 });
 
 export const CountContextProvider = ({ children }: Props) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
   function increment() {
     setCount((count) => count + 1);
