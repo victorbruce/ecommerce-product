@@ -1,6 +1,6 @@
 # Frontend Mentor - E-commerce product page solution
 
-This is a solution to the [E-commerce product page challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+This is a solution to the [E-commerce product page challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6). I built this project using `ReactJs`, `Typescript`, `TailwindCss`.
 
 ## Table of contents
 
@@ -16,100 +16,130 @@ This is a solution to the [E-commerce product page challenge on Frontend Mentor]
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
-
 ## Overview
 
 ### The challenge
 
 Users should be able to:
 
-- View the optimal layout for the site depending on their device's screen size
-- See hover states for all interactive elements on the page
-- Open a lightbox gallery by clicking on the large product image
+- Add a product to a cart
+- Increase or decrease the product quantity
+- Delete product from cart
 - Switch the large product image by clicking on the small thumbnail images
-- Add items to the cart
-- View the cart and remove items from it
+- See hover states for all interactive elements on the page
 
-### Screenshot
+### Demo
 
-![](./screenshot.jpg)
-
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
-
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it. 
-
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
+<video src="./screenshot/ecommerce-demo.mp4" muted autoplay></video>
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [Github](https://github.com/victorbruce/ecommerce-product)
 - Live Site URL: [Add live site URL here](https://your-live-site-url.com)
 
-## My process
+## 💭 My process
 
-### Built with
+I started by structuring the project folder and installing the essential packages to get me started.
+
+Next, I defined by base styling as defined in the style guide which was part of the project starter pack.
+
+To make things easier, I started with the deskep view design by building and testng each component at a time whiles striving for responsiveness on the mobile viewport.
+
+After making the page full responsive, I started working on the interactivity of the page as well as the functionality needed to make the page functional.
+
+Finally, I took time to resolve all warnings the compiler was throwing at me by searching via google to find poosible solutions.
+
+### 📦 Built with
 
 - Semantic HTML5 markup
 - CSS custom properties
-- Flexbox
-- CSS Grid
-- Mobile-first workflow
+- Flexbox and CSS Grid
 - [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
+- [TailwindCss](https://styled-components.com/) - For styles
+- [Typescript](https://typescript.org) - For type safety
+- [React Slick](https://react-slick.neostack.com/) - Image sliders
 
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
+## What I learned
 
-### What I learned
+### 🫙 React Context
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+- **State Management**: I applied React Context to manage the App state by passing data to children components without `prop drilling` or `raising state` without depending on any external third-party library like `Redux`.
 
-To see how you can add code snippets, see below:
+### 👌 Optimizing Re-renders when passing objects and functions
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
+- **Code Optimization**: As mentioned earlier, I used React Context to manage the state of this App. In using React Context, you can pass any values via context, including **objects** and **functions**. I created a `CartContext` that takes in an object with properties that are of type `array`(products) and `functions`(adding and deleting products).
+
+  Now, when this App re-renders(for example, on a route update), React will also have to re-render all components deep in the tree that call `useContext(CartContext)`. **To avoid re-rendering of components even when the underlying data has not change**, we have to wrap our `functions`(addProduct and removeProduct) with the `useCallback` hook and wrap the object creation(in this case our context object) with `useMemo`
+
+  As a result of this optimization, even if the App needs to re-render, the component calling `useContext(CartContext)` won't need to re-render unless the underlying data `products` has changed.
+
+### 🌅 React Slick Library
+
+- **Sliders**: I researched on NPM website to find one of the widely used image slider or carousel on the marketplace. React Slick was the package that stoodout for me based on its simplicity and clear docs.
+  I found a way of customizing React Slick to suit the UI design I was implementing hence making it my go to package for projects with similar requirements in the future.
+
+### 🛟 useMemo
+
+- `useMemo` is a React Hook that lets you cache the results of a calculation between re-renders. It takes in two arguments, `a calculated value` and `a list of dependencies`. Below is an example.
+
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
+useMemo(() => ({
+  products: products,
+  numberOfProducts: products.length,
+  addProduct: addProduct,
+  removeProduct: removeProduct,
+}), [products, addProduct, removeProduct.])
 ```
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
+I learned how to useMemo as a performance optimization technique for expensive calculation and skipping re-rendering of components.
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+### ⏪ useCallback
 
-### Continued development
+- I used React's `useCallback` hook to cache function definitions that will cause re-rendering. This hook takes in a two arguments. `A call back function` and `a list of dependencies`
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+```js
+const addProduct = useCallback(
+  (product: Product) => {
+    setProducts([...products, product]);
+  },
+  [products]
+);
+```
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+### ☣️ Resolving A Typescript Error
 
-### Useful resources
+- **Cannot invoke an object which is possibly 'undefined' in TS**: I came across a new typescript error which indicates that the property I want to invoke as a function could be undefined. The solution was to use the optional chain operator(?) to ensure that the function is only called when it's defined.
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+`Reproducing the error:`
 
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+```js
+addProduct({ id: 1, title: "Nike" });
+```
 
-## Author
+`Solution`:
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+```js
+addProduct?.({ id: 1, title: "Nike" });
+```
 
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
+## ✨ Continued development
 
-## Acknowledgments
+Going forward, I will want to:
 
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
+- Build User Interfaces using the mobile first development approach
+- Incoporate TDD(Test Driven Development) in my projects.
 
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+### ℹ️ Useful resources
+
+- [Blog Article on "Cannot invoke an object which is possibly 'undefined' in TS" - by Borislav Hadzhiev](https://bobbyhadz.com/blog/typescript-cannot-invoke-an-object-which-is-possibly-undefined#:~:text=The%20error%20%22Cannot%20invoke%20an,of%20how%20the%20error%20occurs.) - This helped me resolve a typescript error I had when building this project and the solution I found from this article was an eye openner.
+
+- [React Docs(useContext, useMemo, useCallback)](https://react.dev/reference/react) - This resource helped me understand certain concepts such as handling state management with React Context, caching results of calculations and functions that may cause unexpected re-renders of components when underlying data haven't even changed.
+
+## ✍️ Author
+
+- Website - [Victor Bruce](https://victorbruce.vercel.app)
+- Frontend Mentor - [@victorbruce](https://www.frontendmentor.io/profile/victorbruce)
+
+## 🤝 Acknowledgments
+
+A big shoutout to the designers at Frontend Mentor who came up with this User Interface for peopele to try out.
