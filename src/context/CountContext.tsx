@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useCallback, useMemo, useState } from "react";
 
 interface Props {
   children: React.ReactNode;
@@ -19,19 +19,22 @@ export const CountContext = createContext<ContextProps>({
 export const CountContextProvider = ({ children }: Props) => {
   const [count, setCount] = useState(1);
 
-  function increment() {
+  const increment = useCallback(() => {
     setCount((count) => count + 1);
-  }
+  }, []);
 
-  function decrement() {
+  const decrement = useCallback(() => {
     setCount((count) => count - 1);
-  }
+  }, []);
 
-  const context = {
-    count: count,
-    increment,
-    decrement,
-  };
+  const context = useMemo(
+    () => ({
+      count: count,
+      increment,
+      decrement,
+    }),
+    [count, increment, decrement]
+  );
 
   return (
     <CountContext.Provider value={context}>{children}</CountContext.Provider>

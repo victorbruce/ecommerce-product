@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useCallback, useMemo } from "react";
 
 interface Props {
   children: React.ReactNode;
@@ -21,26 +21,29 @@ interface ContextProps {
 
 export const CartContext = createContext<ContextProps>({
   products: [],
-  numberOfProducts: 0
+  numberOfProducts: 0,
 });
 
 export const CartContextProvider = ({ children }: Props) => {
   const [products, setProducts] = useState<Product[]>([]);
 
-  function addProduct(product: Product) {
+  const addProduct = useCallback((product: Product) => {
     setProducts([...products, product]);
-  }
+  }, []);
 
-  function removeProduct(id: number) {
+  const removeProduct = useCallback((id: number) => {
     setProducts(products.filter((product) => product.id !== id));
-  }
+  }, []);
 
-  const context = {
-    products: products,
-    numberOfProducts: products.length,
-    addProduct: addProduct,
-    removeProduct: removeProduct,
-  };
+  const context = useMemo(() => {
+    return {
+      products: products,
+      numberOfProducts: products.length,
+      addProduct: addProduct,
+      removeProduct: removeProduct,
+    };
+  }, [products, addProduct, removeProduct]);
+
   return (
     <CartContext.Provider value={context}>{children}</CartContext.Provider>
   );
