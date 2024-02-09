@@ -34,7 +34,7 @@ const CartDropDown = () => {
                   </span>
                 </p>
               </div>
-              <button onClick={() => removeProduct(product.id)}>
+              <button onClick={() => removeProduct?.(product.id)}>
                 <img src="/images/icon-delete.svg" alt="delete" />
               </button>
             </div>

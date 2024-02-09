@@ -21,7 +21,7 @@ interface ContextProps {
 
 export const CartContext = createContext<ContextProps>({
   products: [],
-  numberOfProducts: 0,
+  numberOfProducts: 0
 });
 
 export const CartContextProvider = ({ children }: Props) => {
