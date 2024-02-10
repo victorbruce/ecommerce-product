@@ -24,18 +24,19 @@ Users should be able to:
 
 - Add a product to a cart
 - Increase or decrease the product quantity
-- Delete product from cart
+- Delete the product from the cart
 - Switch the large product image by clicking on the small thumbnail images
 - See hover states for all interactive elements on the page
 
 ### Demo
 
-<video src="./screenshot/ecommerce-demo.mp4" muted autoplay></video>
+https://github.com/victorbruce/ecommerce-product/assets/35088083/6e1b21d1-58a7-4b08-ba5c-a83cbd826a49
+
 
 ### Links
 
 - Solution URL: [Github](https://github.com/victorbruce/ecommerce-product)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [https://the-ecommerce-product.vercel.app](https://the-ecommerce-product.vercel.app)
 
 ## 💭 My process
 
@@ -43,11 +44,11 @@ I started by structuring the project folder and installing the essential package
 
 Next, I defined by base styling as defined in the style guide which was part of the project starter pack.
 
-To make things easier, I started with the deskep view design by building and testng each component at a time whiles striving for responsiveness on the mobile viewport.
+To make things easier, I started with the desktop view design by building and testing each component at a time while striving for responsiveness on the mobile viewport.
 
-After making the page full responsive, I started working on the interactivity of the page as well as the functionality needed to make the page functional.
+After making the page fully responsive, I started working on the interactivity of the page as well as the functionality needed to make the page functional.
 
-Finally, I took time to resolve all warnings the compiler was throwing at me by searching via google to find poosible solutions.
+Finally, I took time to resolve all the warnings the compiler was throwing at me by searching via Google to find possible solutions.
 
 ### 📦 Built with
 
@@ -55,8 +56,8 @@ Finally, I took time to resolve all warnings the compiler was throwing at me by 
 - CSS custom properties
 - Flexbox and CSS Grid
 - [React](https://reactjs.org/) - JS library
-- [TailwindCss](https://styled-components.com/) - For styles
-- [Typescript](https://typescript.org) - For type safety
+- [TailwindCss](https://tailwindcss.com/) - For styles
+- [Typescript](https://www.typescriptlang.org/docs/) - For type safety
 - [React Slick](https://react-slick.neostack.com/) - Image sliders
 
 ## What I learned
@@ -67,7 +68,7 @@ Finally, I took time to resolve all warnings the compiler was throwing at me by 
 
 ### 👌 Optimizing Re-renders when passing objects and functions
 
-- **Code Optimization**: As mentioned earlier, I used React Context to manage the state of this App. In using React Context, you can pass any values via context, including **objects** and **functions**. I created a `CartContext` that takes in an object with properties that are of type `array`(products) and `functions`(adding and deleting products).
+- **Code Optimization**: As mentioned earlier, I used React Context to manage the state of this App. In using React Context, you can pass any values via context, including **objects** and **functions**. I created a `CartContext` that takes in an object with properties of type `array`(products) and `functions`(adding and deleting products).
 
   Now, when this App re-renders(for example, on a route update), React will also have to re-render all components deep in the tree that call `useContext(CartContext)`. **To avoid re-rendering of components even when the underlying data has not change**, we have to wrap our `functions`(addProduct and removeProduct) with the `useCallback` hook and wrap the object creation(in this case our context object) with `useMemo`
 
@@ -75,7 +76,7 @@ Finally, I took time to resolve all warnings the compiler was throwing at me by 
 
 ### 🌅 React Slick Library
 
-- **Sliders**: I researched on NPM website to find one of the widely used image slider or carousel on the marketplace. React Slick was the package that stoodout for me based on its simplicity and clear docs.
+- **Sliders**: I researched on NPM website to find one of the widely used image sliders or carousel on the marketplace. React Slick was the package that stood out for me based on its simplicity and clear docs.
   I found a way of customizing React Slick to suit the UI design I was implementing hence making it my go to package for projects with similar requirements in the future.
 
 ### 🛟 useMemo
@@ -91,11 +92,11 @@ useMemo(() => ({
 }), [products, addProduct, removeProduct.])
 ```
 
-I learned how to useMemo as a performance optimization technique for expensive calculation and skipping re-rendering of components.
+I learned how to useMemo as a performance optimization technique for expensive calculations and skipping the re-rendering of components.
 
 ### ⏪ useCallback
 
-- I used React's `useCallback` hook to cache function definitions that will cause re-rendering. This hook takes in a two arguments. `A call back function` and `a list of dependencies`
+- I used React's `useCallback` hook to cache function definitions that will cause re-rendering. This hook takes in two arguments. `A call back function` and `a list of dependencies`
 
 ```js
 const addProduct = useCallback(
@@ -126,12 +127,12 @@ addProduct?.({ id: 1, title: "Nike" });
 
 Going forward, I will want to:
 
-- Build User Interfaces using the mobile first development approach
+- Build User Interfaces using the mobile-first development approach
 - Incoporate TDD(Test Driven Development) in my projects.
 
 ### ℹ️ Useful resources
 
-- [Blog Article on "Cannot invoke an object which is possibly 'undefined' in TS" - by Borislav Hadzhiev](https://bobbyhadz.com/blog/typescript-cannot-invoke-an-object-which-is-possibly-undefined#:~:text=The%20error%20%22Cannot%20invoke%20an,of%20how%20the%20error%20occurs.) - This helped me resolve a typescript error I had when building this project and the solution I found from this article was an eye openner.
+- [Blog Article on "Cannot invoke an object which is possibly 'undefined' in TS" - by Borislav Hadzhiev](https://bobbyhadz.com/blog/typescript-cannot-invoke-an-object-which-is-possibly-undefined#:~:text=The%20error%20%22Cannot%20invoke%20an,of%20how%20the%20error%20occurs.) - This helped me resolve a typescript error I had when building this project and the solution I found from this article was an eye opener.
 
 - [React Docs(useContext, useMemo, useCallback)](https://react.dev/reference/react) - This resource helped me understand certain concepts such as handling state management with React Context, caching results of calculations and functions that may cause unexpected re-renders of components when underlying data haven't even changed.
 
@@ -142,4 +143,4 @@ Going forward, I will want to:
 
 ## 🤝 Acknowledgments
 
-A big shoutout to the designers at Frontend Mentor who came up with this User Interface for peopele to try out.
+A big shoutout to the designers at Frontend Mentor who came up with this User Interface for people to try out.
