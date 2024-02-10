@@ -6,15 +6,15 @@ This is a solution to the [E-commerce product page challenge on Frontend Mentor]
 
 - [Overview](#overview)
   - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-- [My process](#my-process)
-  - [Built with](#built-with)
+  - [Demo](#📽️-demo)
+  - [Links](#🔗-links)
+- [My process](#💭-my-process)
+  - [Built with](#📦-built-with)
   - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
-- [Author](#author)
-- [Acknowledgments](#acknowledgments)
+  - [Continued development](#✨-continued-development)
+  - [Useful resources](#ℹ️-useful-resources)
+- [Author](#✍️-author)
+- [Acknowledgments](#🤝-acknowledgments)
 
 ## Overview
 
@@ -28,12 +28,12 @@ Users should be able to:
 - Switch the large product image by clicking on the small thumbnail images
 - See hover states for all interactive elements on the page
 
-### Demo
+### 📽️ Demo
 
 https://github.com/victorbruce/ecommerce-product/assets/35088083/6e1b21d1-58a7-4b08-ba5c-a83cbd826a49
 
 
-### Links
+### 🔗 Links
 
 - Solution URL: [Github](https://github.com/victorbruce/ecommerce-product)
 - Live Site URL: [https://the-ecommerce-product.vercel.app](https://the-ecommerce-product.vercel.app)
@@ -42,7 +42,7 @@ https://github.com/victorbruce/ecommerce-product/assets/35088083/6e1b21d1-58a7-4
 
 I started by structuring the project folder and installing the essential packages to get me started.
 
-Next, I defined by base styling as defined in the style guide which was part of the project starter pack.
+Next, I defined the base styling as defined in the style guide which was part of the project starter pack.
 
 To make things easier, I started with the desktop view design by building and testing each component at a time while striving for responsiveness on the mobile viewport.
 
@@ -106,6 +106,14 @@ const addProduct = useCallback(
   [products]
 );
 ```
+
+### 🍾 React Portals
+- Rendering a modal with a Portal: I learned how to use a portal to create a modal that floats above the rest of the page for the lighbox feature when a product image is clicked. In React, we use the `createPortal` function to render some children into a different part of the DOM
+
+  syntax:
+  ```js
+    createPortal(children, domeNode, key?)
+  ```
 
 ### ☣️ Resolving A Typescript Error
 
